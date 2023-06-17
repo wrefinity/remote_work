@@ -7,7 +7,7 @@ class UserControls {
         const {id} = req.params
         const user = await User.findById(id);
         if (req.userId !== user._id.toString()) {
-            return next(customError(403, "You can delete only your account!"));
+            return next(customError(403, "You can only delete your account!"));
         }
         try {
             const deletedUser = await User.findOneAndUpdate(
@@ -30,7 +30,5 @@ class UserControls {
         const user = await User.findById(id);
         res.status(200).send(user);
     };
-
 }
-
 export default new UserControls

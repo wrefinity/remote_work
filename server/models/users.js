@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-
 const {Schema} = mongoose;
 
 const userSchema = new Schema({
@@ -24,10 +22,13 @@ const userSchema = new Schema({
     description:{
         type:String,
     },
+    deliveryTime:{
+        type:String,
+    },
     image:{
         type:String,
     },
-    isWorker:{
+    isSeller:{
         type: Boolean,
         default:false
     },

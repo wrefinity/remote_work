@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import AdSection from '../AdSection';
 import Cards from '../Cards';
-import Footer from '../Footer';
+import Footer from '../footer/Footer';
 
 
 function Home() {

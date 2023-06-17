@@ -1,0 +1,55 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login form {
+  width: 30vw;
+  padding: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.login form h1 {
+  color: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #004625;
+  padding: 30px;
+}
+
+.login form label {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+}
+
+.login form input,
+.login form textarea {
+  padding: 20px;
+  border: 1px solid #004625;
+}
+
+.login form button {
+  border: none;
+  padding: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  background-color: #004625;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.login form span{
+  color: red;
+  font-size: 12px;
+}
+
+
+form p.danger{
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+}

@@ -7,12 +7,21 @@
     width: 1400px;
     padding: 50px 0px;
 
+    .danger{
+      color: red;
+      font-size: 18px;
+      align-items: center;
+      padding: 5px;
+    }
+
+
     .title {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       button {
-        background-color: #1dbf73;
+        background-color: #004625;
         color: white;
         font-weight: 500;
         border: none;
@@ -24,10 +33,12 @@
     table {
       width: 100%;
 
+
       tr {
         height: 50px;
+
         th {
-          text-align: left;
+          text-align: center;
         }
         td {
           
@@ -49,6 +60,11 @@
         &:nth-child(even) {
           background-color: #1dbf730f;
         }
+      }
+      tr.headers{
+        background-color: #004625;
+        color:white;
+        padding: 10px;
       }
     }
   }

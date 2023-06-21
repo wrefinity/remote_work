@@ -12,6 +12,7 @@ const Reviews = ({ gigId }) => {
   const [errorMessage, setError] = useState("")
   const currentUser = getCurrentUser()
 
+
   const { isLoading, error, data } = useQuery({
     queryKey: ["reviews"],
     queryFn: () =>
@@ -39,8 +40,9 @@ const Reviews = ({ gigId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const desc = e.target[0].value;
-    const star = e.target[1].value;
+    setError("")
+    const desc = e.target[1].value;
+    const star = e.target[0].value;
     mutation.mutate({ gigId, desc, star });
   };
 

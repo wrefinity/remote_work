@@ -50,6 +50,20 @@
 
 form p.danger{
   color: red;
-  font-size: 14px;
+  font-size: 18px;
   font-style: italic;
+}
+
+form p.sucess
+{
+  color: green;
+  font-size: 18px;
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 20px;
+  color: black;
 }

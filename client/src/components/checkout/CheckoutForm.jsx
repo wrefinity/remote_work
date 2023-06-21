@@ -54,11 +54,10 @@ const CheckoutForm = () => {
       await axiosRequest.post(`/orders/create-payment-intent/${id}`, {
         ref_txt: reference?.value?.flw_ref,
       });
-      setTimeout(() => {
-        navigate("/orders");
-      }, 5000);
+      // setTimeout(() => {
+      navigate("/orders");
+      // }, 5000);
     } catch (err) {
-      console.log(err);
     }
   };
 

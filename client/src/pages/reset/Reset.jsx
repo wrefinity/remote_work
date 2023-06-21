@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "../login/Login.css";
 import axiosRequest from "../../helpers/axiosApi.js";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function Login() {
+const Reset = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -18,15 +17,12 @@ function Login() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    setError(null)
     try {
-      const res = await axiosRequest.post("/auth/login", { email, password });
-      // console.warn(res)
-      
+      const res = await axiosRequest.post("/auth/login", { email });
+      console.warn(res)
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       redirector();
     } catch (err) {
-      console.warn(err)
       setError(err.response.data);
     }
   };
@@ -34,10 +30,10 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={submitHandler}>
-
-        <h1>Login.</h1>
+        
+        <h1> Rest Password</h1>
         <p className="danger">
-          {error && error}
+        {error && error}
         </p>
         <label htmlFor="">Email</label>
         <input
@@ -46,21 +42,11 @@ function Login() {
           placeholder="test@test.com"
           onChange={(e) => setEmail(e.target.value)}
         />
-
-        <label htmlFor="">Password</label>
-        <input
-          name="password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-        <Link to={'/password_reset'}>
-          Reset password
-        </Link>
-
+        <button type="submit">Rest</button>
+       
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Reset;

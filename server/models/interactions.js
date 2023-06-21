@@ -8,7 +8,7 @@ const InteractionSchema = new Schema({
         required: true,
         unique: true,
     },
-    senderId: {
+    sellerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },

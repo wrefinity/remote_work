@@ -5,6 +5,7 @@ class InteractRepo {
 
     createInteractions = async (req, res, next) => {
 
+        if (!req.body.to) return res.status(403).send("body to required")
         try {
             const created = await Interaction.create({
                 id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,

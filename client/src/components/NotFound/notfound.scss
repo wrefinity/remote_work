@@ -1,0 +1,24 @@
+.containerx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    margin: 50px;
+    flex-direction: column;
+
+    button {
+        background-color: #004625;
+        padding: 20px;
+        color: white;
+        font-weight: 500;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    img{
+        width: 400px;
+        height:400px;
+    }
+}
+

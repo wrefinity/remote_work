@@ -49,6 +49,17 @@
         border-radius: 10px;
       }
 
+      p{
+        color: red;
+        font-size: 18px;
+        font-style: italic;
+      }
+      .success{
+        color: green;
+        font-size: 18px;
+        font-style: italic;
+      }
+
       .toggle {
         display: flex;
         align-items: center;

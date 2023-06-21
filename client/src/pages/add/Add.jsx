@@ -77,23 +77,25 @@ const Add = () => {
               onChange={handleChange}
             />
             <label htmlFor="">Category</label>
-            <select name="cat" id="cat" onChange={handleChange}>
-            <option value="---">select category</option>
-            <option value="animation">Animation</option>
-            <option value="design">Design</option>
-            <option value="music">Music</option>
-            <option value="web">Web Development</option>
+            <select name="cat" id="cat" onChange={handleChange} required>
+              <option value="---">select category</option>
+              <option value="animation">Animation</option>
+              <option value="design">Design</option>
+              <option value="music">Music</option>
+              <option value="web">Web Development</option>
             </select>
             <div className="images">
               <div className="imagesInputs">
                 <label htmlFor="">Cover Image</label>
                 <input
                   type="file"
+                  required
                   onChange={(e) => setSingleFile(e.target.files[0])}
                 />
                 <label htmlFor="">Upload Images</label>
                 <input
                   type="file"
+                  required
                   multiple
                   onChange={(e) => setFiles(e.target.files)}
                 />
@@ -109,6 +111,7 @@ const Add = () => {
               placeholder="Brief descriptions to introduce your service to customers"
               cols="0"
               rows="16"
+              required
               onChange={handleChange}
             ></textarea>
             <button onClick={handleSubmit}>Create</button>
@@ -119,21 +122,24 @@ const Add = () => {
               type="text"
               name="shortTitle"
               placeholder="e.g. One-page web design"
+              required
               onChange={handleChange}
             />
             <label htmlFor="">Short Description</label>
             <textarea
               name="shortDesc"
               onChange={handleChange}
+              required
               id=""
               placeholder="Short description of your service"
               cols="30"
               rows="10"
             ></textarea>
             <label htmlFor="">Delivery Time (e.g. 3 days)</label>
-            <input type="number" name="deliveryTime" onChange={handleChange} />
+            <input type="number" name="deliveryTime" onChange={handleChange} required />
             <label htmlFor="">Revision Number</label>
             <input
+              required
               type="number"
               name="revisionNumber"
               onChange={handleChange}

@@ -16,7 +16,7 @@ import getCurrentUser from "../../helpers/getCurrentUser";
 
 
 function Gig() {
-  const [to, setTo]= useState()
+  const [toUser, setTo]= useState(null)
   const { id } = useParams();
   const currentUser = getCurrentUser()
   const navigate = useNavigate()
@@ -47,9 +47,8 @@ function Gig() {
   
   const handleChat = async (e)=>{
     e.preventDefault()
-    if (dataUser?._id) setTo(dataUser._id)
-    console.warn(to)
-    await axiosRequest.post('/conversations', {to})
+    if (!dataUser._id) return
+    await axiosRequest.post('/conversations', {to:dataUser._id})
     setTimeout(() => {
       navigate("/messages");
     }, 5000);

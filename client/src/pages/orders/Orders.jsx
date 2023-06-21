@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate } from "react-router-dom";
 import "./Orders.scss";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import axiosRequest from "../../helpers/axiosApi";
 import deleted from '../../assets/images/delete.png'
 
 const Orders = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [errorMessage, setError] = useState(null)
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
@@ -34,9 +37,21 @@ const Orders = () => {
       }
     }
   };
-  const handleDelete = (e)=>{ 
-    error.preventDefault()
-  }
+  const mutation = useMutation({
+    mutationFn: (idx) => {
+      return axiosRequest.delete(`/orders/delete/${idx}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["orders"]);
+    },
+    onError: (error) => {
+      setError(error?.response?.data)
+    }
+  });
+
+  const handleDelete = (idx) => {
+    mutation.mutate(idx);
+  };
   return (
     <div className="orders">
       {isLoading ? (
@@ -45,11 +60,12 @@ const Orders = () => {
         "error"
       ) : (
         <div className="container">
+        <p className="danger"> {errorMessage && errorMessage}</p>
           <div className="title">
             <h1>Orders</h1>
           </div>
           <table>
-            <tr>
+            <tr className="headers">
               <th>Number</th>
               <th>Title</th>
               <th>Price</th>

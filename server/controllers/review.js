@@ -11,6 +11,8 @@ class ReviewRepo {
         const { gigId, desc, star } = req.body
 
         try {
+
+            console.log(req.body)
             // find a review base on user and job id 
             const review = await Review.findOne({
                 gigId, userId: req.userId,
@@ -33,14 +35,15 @@ class ReviewRepo {
             });
             res.status(201).send(savedReview);
         } catch (err) {
+            console.log(err)
             next(err);
         }
     };
 
     getReviews = async (req, res, next) => {
-        const { jobId } = req.body
+        const { gigId } = req.params
         try {
-            const reviews = await Review.find({ jobId });
+            const reviews = await Review.find({ gigId });
             res.status(200).send(reviews);
         } catch (err) {
             next(err);

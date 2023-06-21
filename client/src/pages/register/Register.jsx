@@ -17,7 +17,8 @@ function Register() {
     isSeller: false,
     description: "",
   });
-
+  const [error, setError] = useState(null);
+  const [sucessful, setSuccess] = useState(null);
   const navigate = useNavigate();
 
 
@@ -28,18 +29,27 @@ function Register() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError(null)
     const url = await upload(file);
-    console.log("check image")
     console.log(url)
     try {
-      await axiosRequest.post("/auth/register", {
+      const response = await axiosRequest.post("/auth/register", {
         ...user,
         image: url,
       });
-      navigate("/")
+
+      // Check the response status code
+      if (response.status === 200) {
+        setSuccess(true); // Set the success state to true
+        setTimeout(() => {
+          navigate("/login");
+        }, 5000);
+      } else {
+        setError("Registration failed.");
+      }
     } catch (err) {
-      console.log(err);
+      console.log(err)
+      setError("Oop something went wrong");
     }
   };
   return (
@@ -73,6 +83,13 @@ function Register() {
             onChange={(e) => handleInput(e, setUser)}
           />
           <button type="submit">Register</button>
+
+          <p className="danger">
+            {error && error}
+          </p>
+          <p className="success">
+            {sucessful && "Check your email for account verification before login"}
+          </p>
         </div>
         <div className="right">
           <h1>Become a seller</h1>

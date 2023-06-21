@@ -43,7 +43,7 @@ const Messages = () => {
             <h1>Messages</h1>
           </div>
           <table>
-            <tr>
+            <tr className="headers">
               <th>Last Message</th>
               <th>Date</th>
               <th>Action</th>

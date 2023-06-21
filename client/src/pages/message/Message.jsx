@@ -52,10 +52,10 @@ const Message = () => {
             {data.map((m) => (
               <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
                 <img
-                  src={m.userId.img || noavatar}
-                  alt=""
+                  src={m.userId.image || noavatar}
+                  alt="m.uccs"
                 />
-                <h6>{m.username}</h6>
+                <h6>{m.userId.username}</h6>
                 <p>{m.message}</p>
               </div>
             ))}

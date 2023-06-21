@@ -23,6 +23,10 @@ import Layout from "./Layout";
 import Success from "./pages/success/Success";
 import CheckoutForm from "./components/checkout/CheckoutForm";
 import getCurrentUser from "./helpers/getCurrentUser";
+import ResetPassword from "./pages/login/ResetPassword";
+import EmailVerify from "./pages/login/EmailVerify";
+import NewPassword from "./pages/login/NewPassword";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -38,6 +42,10 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/password_reset" element={<ResetPassword />}/>
+            <Route path="/users_verification/:id/:token" element={<EmailVerify />} />
+            <Route path="/reset_now/:id/:token" element={<NewPassword />} />
+            {/* protected routes */}
             <Route path="/gigs" element={<ProtectedRoute><Gigs /></ProtectedRoute>} />
             <Route path="/myGigs" element={<ProtectedRoute><MyGigs /></ProtectedRoute>} />
             <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
@@ -47,6 +55,8 @@ const App = () => {
             <Route path="/gig/:id" element={<ProtectedRoute><Gig /></ProtectedRoute>} />
             <Route path="/pay/:id" element={<ProtectedRoute><CheckoutForm /></ProtectedRoute>} />
             <Route path="/success" element={<ProtectedRoute><Success /></ProtectedRoute>} />
+
+            <Route path="/*" element={<NotFound/>} />
           </Route>
         </Routes>
         <Footer />

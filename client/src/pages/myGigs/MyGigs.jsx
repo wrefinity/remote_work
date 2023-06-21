@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "./MyGigs.scss";
 import getCurrentUser from "../../helpers/getCurrentUser";
@@ -9,6 +9,8 @@ import deleted from '../../assets/images/delete.png'
 function MyGigs() {
   const currentUser = getCurrentUser();
   const queryClient = useQueryClient();
+  const [errorMessage, setError] = useState(null)
+
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
@@ -25,6 +27,9 @@ function MyGigs() {
     onSuccess: () => {
       queryClient.invalidateQueries(["myGigs"]);
     },
+    onError: (error) => {
+      setError(error?.response?.data)
+    }
   });
 
   const handleDelete = (id) => {
@@ -39,6 +44,7 @@ function MyGigs() {
         "error"
       ) : (
         <div className="container">
+        <p className="danger"> {errorMessage && errorMessage}</p>
           <div className="title">
             <h1>GIGS</h1>
             {currentUser.isSeller && (

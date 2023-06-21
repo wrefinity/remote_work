@@ -39,15 +39,12 @@ function Navbar() {
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
-        <div className="logo">
-          <Link className="link" to="/">
+        <Link className="link" to="/">
+          <div className="logo">
             <span className="text"> HotJobSpotter <i class="fas fa-handshake"></i></span>
-          </Link>
-        </div>
+          </div>
+        </Link>
         <div className="links">
-          <span>Privacy Policy</span>
-          <span>Explore</span>
-          {!currentUser?.isSeller && <span>Become a Seller</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img src={currentUser.image || avatar} alt="" />

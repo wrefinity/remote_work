@@ -33,7 +33,7 @@ class MessageRepo {
   getMessages = async (req, res, next) => {
     try {
       const messages = await Message.find({ interactionId: req.params.id })
-        .populate({ path: 'userId', select: 'username, image, _id' })
+        .populate({ path: 'userId', select: ['username', 'image', '_id'] })
         .exec();
       res.status(200).send(messages);
     } catch (err) {

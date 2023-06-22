@@ -39,7 +39,7 @@ class OrderClass {
     };
     deletePayments = async (req, res, next) => {
         try {
-            console.log(req.params.id)
+
 
             const ord = await Order.findById(req.params.id);
             if (ord.buyerId !== req.userId)
@@ -48,7 +48,6 @@ class OrderClass {
             await Order.findByIdAndDelete(req.params.id);
             res.status(200).send("Order has been deleted!");
         } catch (err) {
-            console.log(err)
             next(err);
         }
     };

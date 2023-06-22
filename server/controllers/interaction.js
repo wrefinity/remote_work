@@ -18,7 +18,7 @@ class InteractRepo {
             res.status(201).send(created);
         } catch (error) {
             if (error.name === 'MongoServerError' && error.code === 11000) {
-                res.status(200).json("conversation created ")
+                res.status(200).send("conversation created ")
             }
         }
     };

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, Navigate } from "react-router-dom";
 import axiosRequest from "../../helpers/axiosApi";
 import getCurrentUser from "../../helpers/getCurrentUser";
 import "./Navbar.scss";
 import avatar from "../../assets/images/noavatar.jpg"
+import decode from "jwt-decode";
 
 
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const location = useLocation();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -23,8 +25,12 @@ function Navbar() {
   }, []);
 
   const currentUser = getCurrentUser();
+  const token = currentUser?.token;
+
 
   const navigate = useNavigate();
+
+
 
   const handleLogout = async () => {
     try {
@@ -32,9 +38,18 @@ function Navbar() {
       localStorage.setItem("currentUser", null);
       navigate("/");
     } catch (err) {
-      console.log(err);
     }
   };
+
+  if (token) {
+    const decodedToken = decode(token);
+    if (decodedToken.exp * 1000 < new Date().getTime()) {
+      handleLogout();
+      <Navigate to="/login" state={{ from: location }} replace />;
+
+    }
+  }
+
 
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>

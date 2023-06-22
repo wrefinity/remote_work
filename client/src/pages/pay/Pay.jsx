@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import CheckoutForm from "../../components/checkout/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "sk_test_51MtmdICr6bjRolxcvPygQ0Fv6h6JeqlQJi8FCUnWg4hiqHjjoL4ND8JLNz0ZJfRzitqVKeCNGeLy4mreG7mGsWH900xo6hvmrO"
+  ""
 );
 
 const Pay = () => {
@@ -23,7 +23,7 @@ const Pay = () => {
         );
         setClientSecret(res.data.clientSecret);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     makeRequest();

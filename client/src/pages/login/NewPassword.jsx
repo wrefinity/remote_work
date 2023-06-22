@@ -27,7 +27,7 @@ const NewPassword = () => {
       }
       
     } catch (err) {
-      console.log(err.response.data.message)
+
       setError(err.response.data);
     }
   };

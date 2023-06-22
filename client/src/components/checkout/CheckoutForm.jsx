@@ -50,7 +50,6 @@ const CheckoutForm = () => {
 
   const handleSuccessAction = async (reference) => {
     try {
-      console.log(reference)
       await axiosRequest.post(`/orders/create-payment-intent/${id}`, {
         ref_txt: reference?.value?.flw_ref,
       });
@@ -85,7 +84,6 @@ const CheckoutForm = () => {
           onClick={() =>
             handleFlutterPayment({
               callback: (response) => {
-                console.log(response)
                 if (response.status === "successful") {
                   handleSuccessAction(response);
                 }

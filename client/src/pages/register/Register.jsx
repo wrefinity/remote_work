@@ -31,7 +31,6 @@ function Register() {
     e.preventDefault();
     setError(null)
     const url = await upload(file);
-    console.log(url)
     try {
       const response = await axiosRequest.post("/auth/register", {
         ...user,
@@ -48,8 +47,7 @@ function Register() {
         setError("Registration failed.");
       }
     } catch (err) {
-      console.log(err)
-      setError("Oop something went wrong");
+      setError(err.response.data);
     }
   };
   return (

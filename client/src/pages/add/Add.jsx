@@ -40,7 +40,7 @@ const Add = () => {
       setUploading(false);
       dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

@@ -14,7 +14,6 @@ class GigsRepo {
             });
             res.status(201).json(created);
         } catch (err) {
-            console.log(err)
             next(err);
         }
     };
@@ -41,7 +40,6 @@ class GigsRepo {
     };
     getGigs = async (req, res, next) => {
         const q = req.query;
-        console.log(q)
         const filters = {
             ...(q.userId && { userId: q.userId }),
             ...(q.cat && { cat: q.cat }),

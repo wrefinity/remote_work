@@ -5,7 +5,6 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
@@ -35,7 +34,6 @@ const App = () => {
     <div style={{ margin: 0 }}>
       <QueryClientProvider client={queryClient}>
         <Navbar />
-        <ToastContainer />
         <Routes>
           {/* unprotected route  */}
           <Route path="/" element={<Layout />}>

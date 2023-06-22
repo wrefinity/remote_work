@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axiosRequest from "../../helpers/axiosApi";
 import Review from "../review/Review";
-import { toast } from "react-toastify";
 import "./Reviews.scss";
 import getCurrentUser from "../../helpers/getCurrentUser";
 
@@ -33,7 +32,6 @@ const Reviews = ({ gigId }) => {
       queryClient.invalidateQueries(["reviews"])
     },
     onError: (error) => {
-      toast.success(error?.response?.data, { autoClose: 2000 });
       setError(error?.response?.data)
     }
   });

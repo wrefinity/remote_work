@@ -16,7 +16,6 @@ import getCurrentUser from "../../helpers/getCurrentUser";
 
 
 function Gig() {
-  const [toUser, setTo]= useState(null)
   const { id } = useParams();
   const currentUser = getCurrentUser()
   const navigate = useNavigate()

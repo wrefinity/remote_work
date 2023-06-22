@@ -16,7 +16,6 @@ const Success = () => {
           navigate("/orders");
         }, 5000);
       } catch (err) {
-        console.log(err);
       }
     };
 

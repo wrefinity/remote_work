@@ -40,7 +40,7 @@ class AuthControls {
         return res.status(400).send(`${req.body.email} already registered`)
       } else {
         // Handle other errors
-        console.log(error)
+
         res.status(400).send("ensure all fields are provided with exception to image");
       }
 
@@ -92,7 +92,7 @@ class AuthControls {
           httpOnly: true,
         })
         .status(200)
-        .send(others);
+        .send({...others, token});
     } catch (err) {
       next(err);
     }
@@ -140,7 +140,6 @@ class AuthControls {
   }
   // changeNow
   changePassword = async (req, res) => {
-    console.log(req.params)
     const { password } = req.body;
 
     const oldUser = await User.findById(req.params.id);
@@ -160,14 +159,12 @@ class AuthControls {
       await Token.deleteOne({ _id: token_model._id });
       return res.status(200).send("password reset")
     } catch (error) {
-      console.log(error)
       return res.status(400).send("An error occured");
     }
   };
 
   confirmRegistration = async (req, res) => {
     try {
-      console.log(req.params)
       const user = await User.findOne({ _id: req.params.id });
       if (!user) return res.status(400).send("Invalid link");
 

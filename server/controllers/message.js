@@ -5,8 +5,6 @@ import Interact from "../models/interactions.js";
 class MessageRepo {
   createMessage = async (req, res, next) => {
     try {
-
-      console.log(req.body)
       const createdMessage = await Message.create({
         interactionId: req.body.interactionId,
         userId: req.userId,
@@ -26,8 +24,7 @@ class MessageRepo {
 
       res.status(201).send(createdMessage);
     } catch (err) {
-      // console.log(err)
-      // next(err);
+      next(err);
     }
   };
   getMessages = async (req, res, next) => {

@@ -30,7 +30,6 @@ const sendMessage = async (recipients, message, subject_message) => {
         const info  = await transporter.sendMail(mailOptions);
         if (info) return true
     } catch (error) {
-        console.log(error)
         return false
     }
 }
